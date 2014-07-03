@@ -1,6 +1,7 @@
 package com.xlagunas.mundial;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,7 +42,9 @@ public class LandingActivity extends Activity {
             @Override
             public void onClick(View view) {
                 TeamsFetch tf = new TeamsFetch();
-                tf.execute("http://worldcup.sfg.io/teams/");
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), TestFragmentActivity.class);
+                startActivityForResult(intent, 200);
             }
         });
     }

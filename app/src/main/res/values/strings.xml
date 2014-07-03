@@ -7,5 +7,6 @@
     <string name="todayMatches">Today</string>
     <string name="groups">Groups</string>
     <string name="teams">Teams</string>
+    <string name="title_activity_test_fragment">TestFragmentActivity</string>
 
 </resources>
