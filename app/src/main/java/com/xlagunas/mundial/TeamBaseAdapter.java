@@ -32,9 +32,11 @@ import models.Team;
 public class TeamBaseAdapter extends BaseAdapter {
     private List<Team> mTeams = new ArrayList<Team>();
     private LayoutInflater mInflater = null;
+    private Context mContext = null;
     private final String LOGTAG = this.getClass().getName();
 
     public TeamBaseAdapter(Context context) {
+        mContext = context;
         this.mInflater = LayoutInflater.from(context);
         TeamListTask task = new TeamListTask();
         task.execute("http://worldcup.sfg.io/teams/");
@@ -63,9 +65,8 @@ public class TeamBaseAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.layout_team, viewGroup, false);
             viewHolder = new ViewHolderItem();
-            viewHolder.flag = null;
+            viewHolder.flag = (ImageView) convertView.findViewById(R.id.contry_flag);
             viewHolder.countryName = (TextView) convertView.findViewById(R.id.country_name);
-            viewHolder.alterName = (TextView) convertView.findViewById(R.id.alter_name);
             convertView.setTag(viewHolder);
         }
 
@@ -74,9 +75,13 @@ public class TeamBaseAdapter extends BaseAdapter {
         }
 
         Team team = getItem(i);
-        viewHolder.alterName.setText(team.getAlternate_name());
-        viewHolder.countryName.setText(team.getCountry());
-        viewHolder.flag = null;
+        viewHolder.countryName.setText(String.format("%s - %s", team.getCountry(), team.getFifa_code()));
+        if (team.getCountry().equals("Brazil")){
+            viewHolder.flag.setImageDrawable(mContext.getResources().getDrawable(R.drawable.bra));
+        }
+        else {
+            viewHolder.flag.setImageDrawable(null);
+        }
 
         return convertView;
     }
@@ -84,7 +89,6 @@ public class TeamBaseAdapter extends BaseAdapter {
     static class ViewHolderItem{
         ImageView flag;
         TextView countryName;
-        TextView alterName;
     }
 
     private class TeamListTask extends AsyncTask<String, Integer, List<Team>> {
@@ -148,3 +152,5 @@ public class TeamBaseAdapter extends BaseAdapter {
         }
     }
 }
+
+

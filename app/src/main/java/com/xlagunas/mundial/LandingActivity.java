@@ -47,6 +47,16 @@ public class LandingActivity extends Activity {
                 startActivityForResult(intent, 200);
             }
         });
+
+        Button groupsButton = (Button) findViewById(R.id.groupsButton);
+        groupsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), GroupsActivity.class);
+                startActivityForResult(intent, 200);
+            }
+        });
     }
 
 

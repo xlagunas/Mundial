@@ -20,6 +20,10 @@
             android:name=".TestFragmentActivity"
             android:label="@string/title_activity_test_fragment" >
         </activity>
+        <activity
+            android:name=".GroupsActivity"
+            android:label="@string/title_activity_groups" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

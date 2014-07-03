@@ -7,20 +7,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.xlagunas.mundial.R;
+import fragments.TeamsFragment;
 
-import fragments.TeamsFragmentFragment;
+import static com.xlagunas.mundial.R.layout.activity_test_fragment;
 
-public class TestFragmentActivity extends Activity implements TeamsFragmentFragment.OnFragmentInteractionListener{
+public class TestFragmentActivity extends Activity implements TeamsFragment.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test_fragment);
+        setContentView(activity_test_fragment);
         FragmentManager fm = getFragmentManager();
 
         if (fm.findFragmentById(R.id.static_fragment) == null) {
-            TeamsFragmentFragment list = TeamsFragmentFragment.newInstance("","");
+            TeamsFragment list = TeamsFragment.newInstance("", "");
             fm.beginTransaction().add(android.R.id.content, list).commit();
         }
     }

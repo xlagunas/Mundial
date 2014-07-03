@@ -8,5 +8,6 @@
     <string name="groups">Groups</string>
     <string name="teams">Teams</string>
     <string name="title_activity_test_fragment">TestFragmentActivity</string>
+    <string name="title_activity_groups">GroupsActivity</string>
 
 </resources>
