@@ -1,6 +1,7 @@
 package com.xlagunas.mundial;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -60,28 +61,26 @@ public class TeamBaseAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View convertView, ViewGroup viewGroup) {
-        ViewHolderItem viewHolder;
+        ViewHolderItem holder;
 
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.layout_team, viewGroup, false);
-            viewHolder = new ViewHolderItem();
-            viewHolder.flag = (ImageView) convertView.findViewById(R.id.contry_flag);
-            viewHolder.countryName = (TextView) convertView.findViewById(R.id.country_name);
-            convertView.setTag(viewHolder);
+            holder = new ViewHolderItem();
+            holder.flag = (ImageView) convertView.findViewById(R.id.contry_flag);
+            holder.countryName = (TextView) convertView.findViewById(R.id.country_name);
+            convertView.setTag(holder);
         }
 
         else {
-            viewHolder = (ViewHolderItem) convertView.getTag();
+            holder = (ViewHolderItem) convertView.getTag();
         }
 
         Team team = getItem(i);
-        viewHolder.countryName.setText(String.format("%s - %s", team.getCountry(), team.getFifa_code()));
-        if (team.getCountry().equals("Brazil")){
-            viewHolder.flag.setImageDrawable(mContext.getResources().getDrawable(R.drawable.bra));
-        }
-        else {
-            viewHolder.flag.setImageDrawable(null);
-        }
+        holder.countryName.setText(String.format("%s - %s", team.getCountry(), team.getFifa_code()));
+        int idResource = mContext.getResources()
+                .getIdentifier(team.getFifa_code().toLowerCase(), "drawable", mContext.getPackageName());
+            holder.flag.setImageResource(idResource);
+
 
         return convertView;
     }
